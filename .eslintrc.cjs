@@ -9,6 +9,7 @@ module.exports = {
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   plugins: ['react-refresh'],
   rules: {
+    "max-len": [0, 140, 2, { ignoreUrls: true }],
     'react-refresh/only-export-components': 'warn',
   },
 }
