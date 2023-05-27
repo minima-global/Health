@@ -17,7 +17,7 @@ export const drawerAnimation = {
   config: {
     duration: 100,
   },
-};
+}
 
 export const modalAnimation: any = {
   from: {
@@ -35,4 +35,4 @@ export const modalAnimation: any = {
   config: {
     duration: 100,
   },
-};
+}

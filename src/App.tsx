@@ -1,11 +1,11 @@
 import './index.css'
 import AppProvider from './AppContext'
-import Dashboard from './pages/Home'
+import Home from './pages/Home'
 
 function App() {
   return (
     <AppProvider>
-      <Dashboard />
+      <Home />
     </AppProvider>
   )
 }
