@@ -29,7 +29,7 @@ function ImportPeers() {
             <button
               type="button"
               onClick={() => setShowConfirm(true)}
-              className="px-4 py-2 rounded font-bold text-black bg-white text-white"
+              className="px-4 py-2 rounded font-bold text-black bg-white text-white active:scale-95"
             >
               Import
             </button>
