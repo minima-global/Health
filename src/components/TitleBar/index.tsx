@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const TitleBar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -31,6 +31,12 @@ const TitleBar = () => {
             </Link>
             <Link to="/full-status" onClick={() => setShowMenu(false)}>
               <div className="cursor-pointer">Full status</div>
+            </Link>
+            <Link to="/share-peers" onClick={() => setShowMenu(false)}>
+              <div className="cursor-pointer">Share peers</div>
+            </Link>
+            <Link to="/import-peers" onClick={() => setShowMenu(false)}>
+              <div className="cursor-pointer">Import peers</div>
             </Link>
           </div>
         </div>
