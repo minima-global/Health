@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createContext, useEffect, useRef, useState } from 'react';
-import { status, maxima, maxContacts, mds } from './lib';
-import { MaxContactsResponse, MaximaResponse, MDSResponse, StatusResponse } from './types';
+import { status, maxima, maxContacts } from './lib';
+import { MaxContactsResponse, MaximaResponse, StatusResponse } from './types';
 
 export const appContext = createContext<{
   statusData: StatusResponse | null;

@@ -1,8 +1,7 @@
-import Block from '../../components/Block';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { appContext } from '../../AppContext';
-import TitleBar from '../../components/TitleBar'
-import Status from '../../components/Status'
+import TitleBar from '../../components/TitleBar';
+import Status from '../../components/Status';
 
 function FullStatus() {
   const { statusData } = useContext(appContext);

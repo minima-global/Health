@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import Block from '../../components/Block';
 import { appContext } from '../../AppContext';
 import TitleBar from '../../components/TitleBar'
 
 function Home() {
-  const { statusData, mdsData, maxContactsData } = useContext(appContext);
+  const { statusData, maxContactsData } = useContext(appContext);
 
   return (
     <div className="app">
