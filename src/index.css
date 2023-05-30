@@ -11,6 +11,7 @@
   --core-grey: #f4f4f5;
   --core-grey-90: #91919d;
   --core-grey-80: #a7a7b0;
+  --core-grey-40: #D3D3D8;
   --core-grey-20: #e9e9eb;
   --core-grey-05: #f9f9fa;
   --background-color: #17191c;
@@ -75,4 +76,16 @@ body {
 }
 .text-core-grey-5 {
   color: var(--core-grey-05);
+}
+
+/* Borders */
+.border-core-grey-40 {
+  border-color: var(--core-grey-40);
+}
+
+pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
 }

@@ -1,14 +1,15 @@
-import Block from '../../components/Block'
-import { useContext } from 'react'
-import { appContext } from '../../AppContext'
+import { useContext, useState } from 'react';
+import Block from '../../components/Block';
+import { appContext } from '../../AppContext';
+import TitleBar from '../../components/TitleBar'
 
 function Home() {
-  const { statusData, mdsData, maxContactsData } = useContext(appContext)
+  const { statusData, mdsData, maxContactsData } = useContext(appContext);
 
   return (
     <div className="app">
       <div className="h-screen">
-        <div className="sticky top-0 title-bar text-white p-4 z-10">Health</div>
+        <TitleBar />
         <div className="p-5">
           {statusData && (
             <>
@@ -33,17 +34,6 @@ function Home() {
             </>
           )}
 
-          {mdsData && (
-            <>
-              <h5 className="text-white text-lg my-4">MDS</h5>
-              <div className="flex flex-col gap-2">
-                <Block title="Installed" value={mdsData.minidapps.length} />
-                <Block title="Connect" value={mdsData.connect} copy />
-                <Block title="Password" value={mdsData.password} copy />
-              </div>
-            </>
-          )}
-
           {statusData && (
             <>
               <h5 className="text-white text-lg my-4">Network</h5>
@@ -60,7 +50,7 @@ function Home() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
