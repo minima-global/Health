@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import Block from '../../components/Block';
 import { appContext } from '../../AppContext';
-import TitleBar from '../../components/TitleBar'
+import TitleBar from '../../components/TitleBar';
 
 function Home() {
-  const { statusData, maxContactsData } = useContext(appContext);
+  const { statusData, maxContactData, maxContactStats } = useContext(appContext);
 
   return (
     <div className="app">
@@ -25,11 +25,13 @@ function Home() {
             </>
           )}
 
-          {maxContactsData && (
+          {maxContactData && (
             <>
               <h5 className="text-white text-lg my-4">Maxima</h5>
               <div className="flex flex-col gap-2">
-                <Block title="Contacts" value={maxContactsData.contacts.length} />
+                <Block title="Contacts" value={maxContactData.contacts.length} />
+                <Block title="On Chain" value={maxContactStats.ok} />
+                <Block title="Network OK" value={maxContactStats.sameChain} />
               </div>
             </>
           )}

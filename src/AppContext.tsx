@@ -2,17 +2,21 @@ import * as React from 'react';
 import { createContext, useEffect, useRef, useState } from 'react';
 import { status, maxima, maxContacts } from './lib';
 import { MaxContactsResponse, MaximaResponse, StatusResponse } from './types';
+import isBefore from 'date-fns/isBefore';
+import subMinutes from 'date-fns/subMinutes';
 
 export const appContext = createContext<{
   statusData: StatusResponse | null;
-  maxContactsData: MaxContactsResponse | null;
-}>({ statusData: null, maxContactsData: null });
+  maxContactData: MaxContactsResponse | null;
+  maxContactStats: { ok: number; sameChain: number };
+}>({ statusData: null, maxContactData: null, maxContactStats: { ok: 0, sameChain: 0 } });
 
 const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const loaded = useRef(false);
   const [statusData, setStatusData] = useState<StatusResponse | null>(null);
   const [, setMaximaData] = useState<MaximaResponse | null>(null);
-  const [maxContactsData, setMaxContactsData] = useState<MaxContactsResponse | null>(null);
+  const [maxContactData, setMaxContactData] = useState<MaxContactsResponse | null>(null);
+  const [maxContactStats, setMaxContactState] = useState({ ok: 0, sameChain: 0 });
 
   // init mds
   useEffect(() => {
@@ -28,7 +32,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
           maxima().then((maximaResponse) => {
             maxContacts().then((maxContactsResponse) => {
               setMaximaData(maximaResponse);
-              setMaxContactsData(maxContactsResponse);
+              setMaxContactData(maxContactsResponse);
             });
           });
         }
@@ -36,9 +40,21 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     }
   }, [loaded]);
 
+  useEffect(() => {
+    if (maxContactData) {
+      const thirtyMinutesAgo = subMinutes(new Date(), 30);
+
+      setMaxContactState({
+        ok: maxContactData.contacts.map((i) => isBefore(thirtyMinutesAgo, new Date(i.lastseen))).length,
+        sameChain: maxContactData.contacts.filter((i) => i.samechain).length,
+      });
+    }
+  }, [maxContactData]);
+
   const value = {
     statusData,
-    maxContactsData,
+    maxContactData,
+    maxContactStats,
   };
 
   return <appContext.Provider value={value}>{children}</appContext.Provider>;
