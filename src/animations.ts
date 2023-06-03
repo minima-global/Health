@@ -17,7 +17,7 @@ export const drawerAnimation = {
   config: {
     duration: 100,
   },
-}
+};
 
 export const modalAnimation: any = {
   from: {
@@ -35,4 +35,23 @@ export const modalAnimation: any = {
   config: {
     duration: 100,
   },
-}
+};
+
+export const slideAnimation: any = {
+  from: {
+    opacity: 1,
+    translateX: 75,
+  },
+  enter: {
+    translateX: 0,
+    opacity: 1,
+  },
+  leave: {
+    translateX: 75,
+    opacity: 0,
+  },
+  config: {
+    duration: 100,
+  },
+};
+
