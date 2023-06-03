@@ -47,15 +47,3 @@ export function mds(): Promise<MDSResponse> {
     });
   });
 }
-
-export function getPeers(): Promise<MDSResponse> {
-  return new Promise((resolve, reject) => {
-    (window as any).MDS.cmd('peers', function (response: any) {
-      if (response.status) {
-        return resolve(response.response);
-      }
-
-      return reject();
-    });
-  });
-}
