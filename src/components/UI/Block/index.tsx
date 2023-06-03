@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import Clipboard from 'react-clipboard.js';
 import { useEffect, useState } from 'react';
+import Modal from '../Modal';
 
 type BlockProps = {
   title: string;
   value?: string | number;
   link?: string | null;
   copy?: boolean;
+
 };
 
 const Block: React.FC<React.PropsWithChildren<BlockProps>> = ({
@@ -18,6 +19,7 @@ const Block: React.FC<React.PropsWithChildren<BlockProps>> = ({
   copy = false,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -29,13 +31,23 @@ const Block: React.FC<React.PropsWithChildren<BlockProps>> = ({
     };
   }, [copied]);
 
+  const displayInfo = () => setShowInfo(true);
+  const hideInfo = () => setShowInfo(false);
+
   return (
     <div className="p-4 text-sm bg-grey relative flex items-center w-full">
+      <Modal display={showInfo} frosted closeAtBottom={hideInfo}>
+        <div className="text-center">
+          <h1 className="text-2xl pb-6">Block number</h1>
+          <p className="text-core-grey-40 text-base mb-3">The block number is blah blah blah. It is important to make sure that your node is always on the latest block. This can be checked by .....Lorem ipsum dolor sit amet consectetur. Enim sit in ac faucibus posuere dolor.</p>
+        </div>
+      </Modal>
       <div className="grid grid-cols-12 w-full">
         <div className="col-span-4 flex items-center justify-start">
           {title}
           <svg
-            className="mx-2"
+            onClick={displayInfo}
+            className="mx-2 cursor-pointer"
             width="14"
             height="14"
             viewBox="0 0 14 14"
@@ -50,16 +62,7 @@ const Block: React.FC<React.PropsWithChildren<BlockProps>> = ({
         </div>
         <div className="col-span-8 text-right">
           {children && <>{children}</>}
-          {!children && (
-            <>
-              {link && (
-                <Link to={link} className="cursor-pointer">
-                  {value}
-                </Link>
-              )}
-              {!link && <div>{value}</div>}
-            </>
-          )}
+          {!children && <>{value}</>}
         </div>
       </div>
       <div className="text-white mb-1.5"></div>

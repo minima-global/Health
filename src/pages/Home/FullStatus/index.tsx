@@ -1,10 +1,8 @@
 import { useContext } from 'react';
-import { appContext } from '../../AppContext';
-import TitleBar from '../../components/TitleBar';
-import Status from '../../components/Status';
-import SlideScreen from '../../components/UI/SlideScreen';
-import Back from '../../components/UI/Back';
-import Panel from '../../components/UI/Panel';
+import { appContext } from '../../../AppContext';
+import Back from '../../../components/UI/Back';
+import Panel from '../../../components/UI/Panel';
+import SlideScreen from '../../../components/UI/SlideScreen';
 
 type FullStatusProps = {
   display: boolean;

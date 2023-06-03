@@ -1,21 +1,26 @@
-import { useContext, useState } from 'react';
-import Block from '../../components/Block';
+import { useContext, useEffect, useState } from 'react';
+import FullStatus from './FullStatus';
+import Block from '../../components/UI/Block';
 import { appContext } from '../../AppContext';
 import TitleBar from '../../components/TitleBar';
 import MenuItem from '../../components/UI/MenuItem';
-import FullStatus from '../FullStatus';
+import ChainStatus from './ChainStatus';
 
 function Home() {
   const { statusData, maxContactData, maxContactStats } = useContext(appContext);
   const [showFullStatus, setShowFullState] = useState(false);
+  const [showChainStatus, setShowChainStatus] = useState(false);
 
   const displayFullStatus = () => setShowFullState(true);
   const hideFullStatus = () => setShowFullState(false);
+  const displayChainStatus = () => setShowChainStatus(true);
+  const hideChainStatus = () => setShowChainStatus(false);
 
   return (
     <div className="relative app text-white">
       <div>
         <FullStatus display={showFullStatus} dismiss={hideFullStatus} />
+        <ChainStatus display={showChainStatus} dismiss={hideChainStatus} />
 
         <TitleBar />
 
@@ -68,7 +73,9 @@ function Home() {
                   <div className="text-core-grey-80 mb-4">
                     One or more of your contacts are on a different chain. Please check you are on the right chain.
                   </div>
-                  <div>Need help?</div>
+                  <div className="cursor-pointer" onClick={displayChainStatus}>
+                    Need help?
+                  </div>
                 </div>
               </div>
             </div>

@@ -13,23 +13,22 @@ export const SlideScreen: React.FC<React.PropsWithChildren<SlideScreenProps>> = 
   useEffect(() => {
     if (display) {
       window.scrollTo(0, 0);
-      document.body.classList.add('overflow-hidden');
-    } else {
-      document.body.classList.remove('overflow-hidden');
     }
-  }, [display])
+
+    document.body.style.overflow = display ? 'hidden' : 'unset';
+  }, [display]);
 
   return (
     <div>
       {transition((style, display) => (
         <div>
           {display && (
-            <div className="bg-black mx-auto fixed w-full h-full z-[60] text-black">
+            <div className="bg-black mx-auto fixed w-full h-full z-[10] text-black">
               {display && (
-                <div className="relative z-[60] h-full w-full">
+                <div className="relative z-[10] h-full w-full">
                   <animated.div
                     style={style}
-                    className="modal h-full text-white box-shadow-lg mx-auto relative overflow-hidden"
+                    className="modal h-full text-white box-shadow-lg mx-auto relative overflow-y-scroll custom-scrollbar"
                   >
                     {children}
                   </animated.div>
