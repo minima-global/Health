@@ -15,12 +15,12 @@ function ChainStatus({ display, dismiss }: FullStatusProps) {
 
   return (
     <SlideScreen display={display}>
-      <div className="h-full flex flex-col p-5 pt-16">
+      <div className="h-full flex flex-col p-5">
         {statusData && (
           <>
             <Back textContent="Back" onClick={dismiss} />
             <h1 className="text-2xl mb-6">Chain status</h1>
-            <div className="flex-grow flex flex-col gap-3">
+            <div className="flex-grow flex flex-col gap-6">
               {maxContactData && (
                 <div className="rounded-md core-black-contrast overflow-hidden">
                   <h5 className="p-4 text-xl">Chain</h5>

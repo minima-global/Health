@@ -85,7 +85,15 @@ function Home() {
             <div className="rounded-md core-black-contrast overflow-hidden">
               <h5 className="p-4 text-xl">Minima</h5>
               <div className="flex flex-col gap-0.5">
-                <Block title="Block" value={statusData.chain.block} />
+                <Block
+                  title="Block"
+                  value={statusData.chain.block}
+                  info={{
+                    title: 'Block',
+                    textContent:
+                      'The block number is blah blah blah. It is important to make sure that your node is always on the latest block. This can be checked by .....Lorem ipsum dolor sit amet consectetur. Enim sit in ac faucibus posuere dolor.',
+                  }}
+                />
                 <Block title="Block time" value={statusData.chain.time} />
                 <Block title="Version" value={statusData.version} />
                 <Block title="RAM" value={statusData.memory.ram} />

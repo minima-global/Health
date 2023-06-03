@@ -14,7 +14,7 @@ function FullStatus({ display, dismiss }: FullStatusProps) {
 
   return (
     <SlideScreen display={display}>
-      <div className="h-full flex flex-col p-5 pt-16">
+      <div className="h-full flex flex-col p-5">
         {statusData && (
           <>
             <Back textContent="Health" onClick={dismiss} />

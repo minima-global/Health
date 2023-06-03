@@ -14,12 +14,12 @@
 
   --status-red: #ff627e;
   --status-green: #4fe3c1;
-  --core-grey: #91919d;
   --core-grey-5: #f9f9fa;
   --core-grey-20: #e9e9eb;
   --core-grey-40: #d3d3d8;
   --core-grey-80: #a7a7b0;
   --core-grey-90: #91919d;
+  --core-grey-100: #91919d;
   --core-black-100: #08090b;
   --core-black-contrast: #17191c;
   --core-black-contrast-2: #282b2e;
@@ -145,6 +145,9 @@ pre {
 }
 .text-core-grey-80 {
   color: var(--core-grey-80);
+}
+.text-core-grey-100 {
+  color: var(--core-grey-100);
 }
 
 .bg-frosted {

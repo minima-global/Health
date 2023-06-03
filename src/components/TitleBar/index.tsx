@@ -1,8 +1,6 @@
-import { useState } from 'react';
-
 const TitleBar = () => {
   return (
-    <div className="sticky top-0 z-20 title-bar mr-2">
+    <div className="sticky top-0 z-40 title-bar mr-2">
       <div className="grid grid-cols-12">
         <div className="col-span-6 flex items-center p-4">
           <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
