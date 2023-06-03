@@ -1,4 +1,5 @@
 type BackProps = {
+  textContent: string;
   onClick?: () => void;
 };
 

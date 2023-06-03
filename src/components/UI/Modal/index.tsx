@@ -2,7 +2,6 @@ import { PropsWithChildren, useEffect } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 import { modalAnimation } from '../../../animations';
 import Button from '../Button';
-import TitleBar from '../../TitleBar';
 
 type ModalProps = {
   display: boolean;
