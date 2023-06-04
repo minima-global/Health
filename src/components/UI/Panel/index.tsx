@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Clipboard from 'react-clipboard.js';
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type PanelProps = {
   title: string;
@@ -10,7 +10,7 @@ type PanelProps = {
   refresh?: boolean;
 };
 
-const Panel: React.FC<PropsWithChildren<PanelProps>> = ({
+const Panel: React.FC<React.PropsWithChildren<PanelProps>> = ({
   title,
   children,
   value,

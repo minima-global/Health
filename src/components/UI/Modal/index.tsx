@@ -36,7 +36,7 @@ export const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
                 </animated.div>
               </div>
               {closeAtBottom && (
-                <div className="absolute bottom-10 w-full px-8 z-50">
+                <div className="absolute bottom-10 w-full px-6 z-50">
                   <Button variant="secondary" onClick={closeAtBottom}>
                     Close
                   </Button>
