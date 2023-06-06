@@ -23,8 +23,8 @@ function Home() {
         <ChainStatus display={showChainStatus} dismiss={hideChainStatus} />
 
         <TitleBar />
+        <div className="relative p-4 flex flex-col gap-6 max-w-xl mx-auto">
 
-        <div className="p-5 flex flex-col gap-6">
           <h1 className="text-2xl">Network health</h1>
 
           {maxContactData && (

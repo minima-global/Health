@@ -12,6 +12,8 @@ const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({ variant = 'pri
     base += ' text-black bg-white';
   } else if (variant === 'secondary') {
     base += ' text-white core-black-contrast-3';
+  } else if (variant === 'contrast-2') {
+    base += ' text-white core-black-contrast-2';
   }
 
   return (

@@ -105,10 +105,10 @@ pre {
 
 /** Custom scrollbar **/
 .custom-scrollbar::-webkit-scrollbar {
-  width: 0.5em;
+  width: 0.3em;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--core-black-100);
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: white;
@@ -132,6 +132,15 @@ pre {
 }
 .core-black-contrast-3 {
   background-color: var(--core-black-contrast-3);
+}
+
+@media screen and (min-width: 768px) {
+  .lg\:core-black-100 {
+    background-color: var(--core-black-100);
+  }
+  .lg\:core-black-contrast-1 {
+    background-color: var(--core-black-contrast);
+  }
 }
 
 .text-status-green {
@@ -158,4 +167,8 @@ pre {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.lock {
+  overflow: hidden !important;
 }

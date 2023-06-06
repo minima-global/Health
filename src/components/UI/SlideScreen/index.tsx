@@ -23,14 +23,16 @@ export const SlideScreen: React.FC<React.PropsWithChildren<SlideScreenProps>> = 
       {transition((style, display) => (
         <div>
           {display && (
-            <div className="bg-black mx-auto fixed w-full h-full z-40 text-black pt-14">
+            <div className="bg-black top-0 mx-auto fixed w-full h-full z-40 text-black pt-14 ">
               {display && (
                 <div className="relative z-40 h-full w-full">
                   <animated.div
                     style={style}
                     className="modal h-full text-white box-shadow-lg mx-auto relative overflow-y-scroll custom-scrollbar"
                   >
-                    {children}
+                    <div className="max-w-xl mx-auto h-full">
+                      {children}
+                    </div>
                   </animated.div>
                 </div>
               )}

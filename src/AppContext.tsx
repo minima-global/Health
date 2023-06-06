@@ -52,6 +52,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   }, [maxContactData]);
 
   const value = {
+    loaded,
     statusData,
     maxContactData,
     maxContactStats,
