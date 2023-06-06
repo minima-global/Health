@@ -4,6 +4,7 @@ import { status, maxima, maxContacts } from './lib';
 import { MaxContactsResponse, MaximaResponse, StatusResponse } from './types';
 import isBefore from 'date-fns/isBefore';
 import subMinutes from 'date-fns/subMinutes';
+import useBadgeNotification from './hooks/useBadgeNotification';
 
 export const appContext = createContext<{
   statusData: StatusResponse | null;
@@ -17,6 +18,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [, setMaximaData] = useState<MaximaResponse | null>(null);
   const [maxContactData, setMaxContactData] = useState<MaxContactsResponse | null>(null);
   const [maxContactStats, setMaxContactState] = useState({ ok: 0, sameChain: 0 });
+  const badgeNotification = useBadgeNotification();
 
   // init mds
   useEffect(() => {
@@ -56,6 +58,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     statusData,
     maxContactData,
     maxContactStats,
+    ...badgeNotification,
   };
 
   return <appContext.Provider value={value}>{children}</appContext.Provider>;

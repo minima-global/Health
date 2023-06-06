@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Clipboard from 'react-clipboard.js';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Modal from '../Modal';
+import { appContext } from '../../../AppContext';
 
 type BlockProps = {
   title: string;
@@ -16,6 +17,7 @@ type BlockProps = {
 const Block: React.FC<React.PropsWithChildren<BlockProps>> = ({ children, title, value, copy = false, info }) => {
   const [copied, setCopied] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const { setBadgeNotification } = useContext(appContext);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -29,6 +31,11 @@ const Block: React.FC<React.PropsWithChildren<BlockProps>> = ({ children, title,
 
   const displayInfo = () => setShowInfo(true);
   const hideInfo = () => setShowInfo(false);
+
+  const handleClipboard = () => {
+    setBadgeNotification('Copied to clipboard');
+    setCopied(true);
+  }
 
   return (
     <div className="p-4 text-sm bg-grey relative flex items-center w-full">
@@ -68,7 +75,7 @@ const Block: React.FC<React.PropsWithChildren<BlockProps>> = ({ children, title,
         <div>
           {!copied && (
             <div className="text-core-grey-100 absolute top-3.5 right-3.5 md:top-4 md:right-4 z-10">
-              <Clipboard data-clipboard-text={value} onClick={() => setCopied(true)}>
+              <Clipboard data-clipboard-text={value} onClick={handleClipboard}>
                 <div className="flex items-center">
                   <svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -82,7 +89,7 @@ const Block: React.FC<React.PropsWithChildren<BlockProps>> = ({ children, title,
           )}
           {copied && (
             <div className="absolute top-3.5 right-3.5 md:top-4 md:right-4 z-10">
-              <div className="flex items-center" onClick={() => null}>
+              <div className="flex items-center">
                 <div className="text-sm text-primary flex items-center gap-2">
                   Copied to clipboard
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

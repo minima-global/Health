@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Clipboard from 'react-clipboard.js';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { appContext } from '../../../AppContext';
 
 type PanelProps = {
   title: string;
@@ -18,6 +19,7 @@ const Panel: React.FC<React.PropsWithChildren<PanelProps>> = ({
   copy = false,
   refresh = false,
 }) => {
+  const { setBadgeNotification } = useContext(appContext);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -30,6 +32,11 @@ const Panel: React.FC<React.PropsWithChildren<PanelProps>> = ({
     };
   }, [copied]);
 
+  const handleClipboard = () => {
+    setBadgeNotification('Copied to clipboard');
+    setCopied(true);
+  }
+
   return (
     <div className="flex flex-col core-black-contrast rounded relative overflow-hidden h-full">
       <div className="relative text-white p-4">
@@ -39,7 +46,7 @@ const Panel: React.FC<React.PropsWithChildren<PanelProps>> = ({
             {!copied && (
               <div className="flex items-center z-10 -mt-0.5">
                 <div>
-                  <Clipboard data-clipboard-text={value} onClick={() => setCopied(true)}>
+                  <Clipboard data-clipboard-text={value} onClick={handleClipboard}>
                     <div className="text-sm text-primary flex items-center gap-2">
                       <span className="mt-0.5">Copy</span>
                       <svg width="20" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
