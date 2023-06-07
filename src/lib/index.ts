@@ -49,7 +49,7 @@ export function mds(): Promise<MDSResponse> {
 }
 
 export function promisfy(fn: any, command: string, arg: any = undefined): any {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (arg) {
       fn(command, arg, function (response: any) {
         if (response.status) {

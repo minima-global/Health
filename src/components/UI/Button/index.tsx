@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 type ButtonProps = {
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'contrast-2';
   onClick?: () => void;
 };
 
