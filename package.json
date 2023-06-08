@@ -1,8 +1,8 @@
 {
   "name": "health",
   "private": true,
-  "description": "",
-  "version": "0.1.1",
+  "description": "View your minima node network health",
+  "version": "0.1.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
