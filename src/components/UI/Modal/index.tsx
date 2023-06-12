@@ -17,10 +17,6 @@ export const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
 }) => {
   const transition: any = useTransition(display, modalAnimation as any);
 
-  useEffect(() => {
-    // document.body.style.overflow = display ? 'hidden' : 'unset';
-  }, [display]);
-
   return (
     <div>
       {transition((style, display) => (
@@ -33,10 +29,15 @@ export const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
                   className="modal mb-8 text-white core-black-contrast-2 box-shadow-lg rounded p-8 mx-auto relative overflow-hidden"
                 >
                   {children}
+                  <div className="hidden lg:block w-full z-50 mt-8">
+                    <Button variant="secondary" onClick={closeAtBottom}>
+                      Close
+                    </Button>
+                  </div>
                 </animated.div>
               </div>
               {closeAtBottom && (
-                <div className="absolute bottom-10 w-full px-6 z-50">
+                <div className="block lg:hidden absolute bottom-10 w-full px-6 z-50">
                   <Button variant="secondary" onClick={closeAtBottom}>
                     Close
                   </Button>

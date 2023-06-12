@@ -122,3 +122,9 @@ export type MaximaResponse = {
   publickey: string;
   staticmls: boolean;
 };
+
+export type BlockResponse = {
+  block: string;
+  date: string;
+  timemilli: string;
+};

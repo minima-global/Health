@@ -81,3 +81,7 @@ export function loadFile(fileName: string) {
 export function saveFile(fileName: string, arg: string | object) {
   return promisfy((window as any).MDS.file.save, fileName, arg);
 }
+
+export function getBlock() {
+  return promisfy((window as any).MDS.cmd, 'block');
+}
