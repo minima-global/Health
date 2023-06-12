@@ -85,7 +85,14 @@ function Home() {
                     textContent: translation.en.DISK_SPACE_INFO_TEXT_CONTENT,
                   }}
                 />
-                <Block title="Uptime" value={statusData.uptime} />
+                <Block
+                  title="Uptime"
+                  value={statusData.uptime}
+                  info={{
+                    title: translation.en.UPTIME_INFO_TITLE,
+                    textContent: translation.en.UPTIME_INFO_TEXT_CONTENT,
+                  }}
+                />
               </div>
             </div>
           )}

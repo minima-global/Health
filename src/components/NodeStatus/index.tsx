@@ -1,14 +1,9 @@
 import { FC, PropsWithChildren, useContext, useMemo } from 'react';
-import isAfter from 'date-fns/isAfter';
-import isBefore from 'date-fns/isBefore';
-import subMinutes from 'date-fns/subMinutes';
-import fromUnixTime from 'date-fns/fromUnixTime';
 import Block from '../UI/Block';
+import isAfter from 'date-fns/isAfter';
+import subMinutes from 'date-fns/subMinutes';
 import { appContext } from '../../AppContext';
-
-const BLOCK_LONGER_THAN_5_MINUTES_AGO = 'BLOCK_LONGER_THAN_5_MINUTES_AGO';
-const CONTACT_NOT_ON_SAME_CHAIN = 'CONTACT_NOT_ON_SAME_CHAIN';
-const OK = 'OK';
+import fromUnixTime from 'date-fns/fromUnixTime';
 
 const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
   let { block, maxContactData } = useContext(appContext);
@@ -76,6 +71,10 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
   // 2nd contact is the one with error
   // const now = new Date();
   // const testMinutesAgo = subMinutes(now, 58);
+  // block = {
+  //   ...block,
+  //   timemilli: 1686551141000,
+  // } as any;
   // maxContactData = {
   //   ...maxContactData,
   //   contacts: [
@@ -90,28 +89,30 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
   //   ],
   // } as any;
 
-  const showStatus = useMemo(() => {
+  const nodeStatus = useMemo(() => {
     if (block) {
       const now = new Date();
       const fiveMinutesAgo = subMinutes(now, 5);
-      const fiftyNineMinutesAgo = subMinutes(now, 59);
       const blockTime = fromUnixTime(Number(block.timemilli) / 1000);
 
-      if (isBefore(blockTime, fiveMinutesAgo)) {
-        return BLOCK_LONGER_THAN_5_MINUTES_AGO;
-      }
+      return isAfter(blockTime, fiveMinutesAgo);
+    }
+  }, [block, maxContactData]);
+
+  const contactStatus = useMemo(() => {
+    if (block) {
+      const now = new Date();
+      const fiftyNineMinutesAgo = subMinutes(now, 59);
 
       if (maxContactData && maxContactData.contacts.length > 0) {
-        const showWarning = maxContactData.contacts.find((contact) => {
+        const result = maxContactData.contacts.find((contact) => {
           return isAfter(new Date(Number(contact.lastseen)), fiftyNineMinutesAgo) && !contact.samechain;
         });
 
-        if (showWarning) {
-          return CONTACT_NOT_ON_SAME_CHAIN;
-        }
+        return !result;
       }
 
-      return OK;
+      return true;
     }
   }, [block, maxContactData]);
 
@@ -121,11 +122,11 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
         <div className="rounded-md core-black-contrast overflow-hidden">
           <h5 className="p-4 text-xl">Chain</h5>
           <div className="flex flex-col gap-0.5">
-            {showStatus === BLOCK_LONGER_THAN_5_MINUTES_AGO && (
+            {(!nodeStatus || !contactStatus) && (
               <>
                 <Block title="Status">
                   <div className="flex items-center justify-end text-status-red">
-                    Bad
+                    Warning
                     <svg
                       className="ml-3"
                       width="21"
@@ -142,44 +143,28 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
                   </div>
                 </Block>
                 <div className="bg-grey text-sm p-4">
-                  <div className="text-core-grey-80">
-                    Warning: You last received a block over 5 minutes ago. Your node may not be in sync with the latest
-                    block.
-                  </div>
+                  {!nodeStatus && contactStatus && (
+                    <div className="text-core-grey-80">
+                      You last received a block over 5 minutes ago. Your node may not be in sync with the latest block.
+                    </div>
+                  )}
+                  {!contactStatus && nodeStatus && (
+                    <div className="text-core-grey-80">
+                      One or more of your Maxima contacts are on a different chain. Please check you are on the right
+                      chain.
+                    </div>
+                  )}
+                  {!contactStatus && !nodeStatus && (
+                    <div className="text-core-grey-80">
+                      You last received a block over 5 minutes ago and one or more of your Maxima contacts are on a
+                      different chain. Your node may not be in sync, please check you are on the right chain.
+                    </div>
+                  )}
                   {children}
                 </div>
               </>
             )}
-            {showStatus === CONTACT_NOT_ON_SAME_CHAIN && (
-              <>
-                <Block title="Status">
-                  <div className="flex items-center justify-end text-status-red">
-                    Bad
-                    <svg
-                      className="ml-3"
-                      width="21"
-                      height="21"
-                      viewBox="0 0 21 21"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M17.9037 14.1038L16.7691 12.9385C17.4422 12.7551 17.9855 12.3946 18.399 11.8567C18.8124 11.3189 19.0191 10.7 19.0191 10C19.0191 9.16025 18.7227 8.4439 18.1297 7.85095C17.5368 7.258 16.8204 6.96153 15.9807 6.96153H12.173V5.46158H15.9807C17.2358 5.46158 18.306 5.9042 19.1912 6.78945C20.0765 7.6747 20.5191 8.74489 20.5191 10C20.5191 10.8859 20.2813 11.6952 19.8056 12.4279C19.33 13.1606 18.696 13.7192 17.9037 14.1038ZM14.5807 10.75L13.0807 9.25003H14.7307V10.75H14.5807ZM19.1461 20.2538L0.746094 1.85383L1.79992 0.800003L20.1999 19.2L19.1461 20.2538ZM9.82682 14.5384H6.01914C4.76403 14.5384 3.69384 14.0958 2.80859 13.2106C1.92334 12.3253 1.48072 11.2551 1.48072 10C1.48072 8.88847 1.83874 7.91315 2.55477 7.07405C3.27079 6.23495 4.16918 5.72823 5.24994 5.55388H5.49997L6.90764 6.96153H6.01914C5.17941 6.96153 4.46307 7.258 3.87012 7.85095C3.27717 8.4439 2.98069 9.16025 2.98069 10C2.98069 10.8398 3.27717 11.5561 3.87012 12.1491C4.46307 12.742 5.17941 13.0385 6.01914 13.0385H9.82682V14.5384ZM7.26917 10.75V9.25003H9.21149L10.6865 10.75H7.26917Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                </Block>
-                <div className="bg-grey text-sm p-4">
-                  <div className="text-core-grey-80">
-                    Warning: One or more of your contacts are on a different chain. Please check you are on the right
-                    chain.
-                  </div>
-                  {children}
-                </div>
-              </>
-            )}
-            {showStatus === OK && (
+            {nodeStatus && contactStatus && (
               <>
                 <Block title="Status">
                   <div className="flex items-center justify-end text-status-green">

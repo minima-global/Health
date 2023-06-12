@@ -49,7 +49,10 @@ function ChainStatus({ display, dismiss }: FullStatusProps) {
                     </li>
                     <li className="mb-1">
                       Restore a recent backup - your node will sync from the last block in the backup to the latest
-                      block Backup & Chain re-sync - if you have not previously taken a backup, take a backup now and
+                      block Backup & Chain re-sync
+                    </li>
+                    <li className="mb-1">
+                      If you have not previously taken a backup, take a backup now and
                       then do a Chain re-sync from an Archive node.
                     </li>
                   </ol>
