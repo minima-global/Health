@@ -5,6 +5,7 @@ import { BlockResponse, MaxContactsResponse, MaximaResponse, StatusResponse } fr
 import isBefore from 'date-fns/isBefore';
 import subMinutes from 'date-fns/subMinutes';
 import useBadgeNotification from './hooks/useBadgeNotification';
+import { isAfter } from 'date-fns';
 
 export const appContext = createContext<{
   loaded: RefObject<boolean>;
@@ -73,11 +74,31 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (maxContactData) {
-      const thirtyMinutesAgo = subMinutes(new Date(), 30);
+      let networkOk = 0;
+      let sameChain = 0;
+
+      maxContactData.contacts.forEach((contact) => {
+        const lastSeen = contact.lastseen;
+
+        const displayGreenNetwork = lastSeen ? isBefore(subMinutes(new Date(), 30), new Date(lastSeen)) : null;
+        const displayYellowNetwork = lastSeen ? isAfter(subMinutes(new Date(), 30), new Date(lastSeen)) && isBefore(subMinutes(new Date(), 59), new Date(lastSeen)) : null;
+        const displayRedNetwork = lastSeen ? isAfter(subMinutes(new Date(), 60), new Date(lastSeen)) : null;
+
+        const displayGreenChain = sameChain && !!((displayGreenNetwork || displayYellowNetwork) && sameChain);
+        const displayYellowChain = sameChain && !!(displayRedNetwork && sameChain);
+
+        if ((displayGreenNetwork || displayYellowNetwork)) {
+          networkOk += 1;
+        }
+
+        if ((displayGreenChain || displayYellowChain)) {
+          sameChain += 1;
+        }
+      });
 
       setMaxContactState({
-        ok: maxContactData.contacts.map((i) => isBefore(thirtyMinutesAgo, new Date(i.lastseen))).length,
-        sameChain: maxContactData.contacts.filter((i) => i.samechain).length,
+        ok: networkOk,
+        sameChain: sameChain,
       });
     }
   }, [maxContactData]);
