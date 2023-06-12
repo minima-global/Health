@@ -19,17 +19,8 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
   //   timemilli: 1686551141000,
   // } as any;
 
-  // maxContactData = {
-  //   ...maxContactData,
-  //   contacts: [
-  //     {
-  //       lastseen: '1686557356000',
-  //       samechain: false,
-  //     },
-  //   ],
-  // } as any;
-
-  // // contact is 5 minutes ago
+  // contact is 5 minutes ago
+  // but not on same chain
   // const now = new Date();
   // const testMinutesAgo = subMinutes(now, 5);
   // maxContactData = {
@@ -45,6 +36,19 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
   // // contact is 35 minutes ago
   // const now = new Date();
   // const testMinutesAgo = subMinutes(now, 35);
+  // maxContactData = {
+  //   ...maxContactData,
+  //   contacts: [
+  //     {
+  //       lastseen: testMinutesAgo,
+  //       samechain: false,
+  //     },
+  //   ],
+  // } as any;
+
+  // over 60 minutes
+  // const now = new Date();
+  // const testMinutesAgo = subMinutes(now, 58);
   // maxContactData = {
   //   ...maxContactData,
   //   contacts: [
@@ -71,7 +75,7 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
   // contact is 5 minutes ago but on same chain
   // 2nd contact is the one with error
   // const now = new Date();
-  // const testMinutesAgo = subMinutes(now, 5);
+  // const testMinutesAgo = subMinutes(now, 58);
   // maxContactData = {
   //   ...maxContactData,
   //   contacts: [
@@ -81,7 +85,7 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
   //     },
   //     {
   //       lastseen: testMinutesAgo,
-  //       samechain: false,
+  //       samechain: true,
   //     },
   //   ],
   // } as any;
@@ -90,7 +94,7 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
     if (block) {
       const now = new Date();
       const fiveMinutesAgo = subMinutes(now, 5);
-      const thirtyMinutesAgo = subMinutes(now, 30);
+      const fiftyNineMinutesAgo = subMinutes(now, 59);
       const blockTime = fromUnixTime(Number(block.timemilli) / 1000);
 
       if (isBefore(blockTime, fiveMinutesAgo)) {
@@ -98,13 +102,9 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
       }
 
       if (maxContactData && maxContactData.contacts.length > 0) {
-        const showWarning = maxContactData.contacts.find(
-          (contact) => {
-            const timestamp = fromUnixTime(Number(contact.lastseen) / 1000);
-
-            return isAfter(timestamp, thirtyMinutesAgo) && !contact.samechain;
-          }
-        );
+        const showWarning = maxContactData.contacts.find((contact) => {
+          return isAfter(new Date(Number(contact.lastseen)), fiftyNineMinutesAgo) && !contact.samechain;
+        });
 
         if (showWarning) {
           return CONTACT_NOT_ON_SAME_CHAIN;

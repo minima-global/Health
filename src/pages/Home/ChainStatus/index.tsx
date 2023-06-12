@@ -44,10 +44,7 @@ function ChainStatus({ display, dismiss }: FullStatusProps) {
                       Check that the Minima app battery setting is set to "not optimised" (if using Android)
                     </li>{' '}
                     <li className="mb-1">
-                      Restart your node - in the majority of cases your node will successfully sync to the latest block.
-                    </li>
-                    <li className="mb-1">
-                      To restart your node, select Shutdown node from Utilities. Please allow 10-15 minutes for your
+                      Restart your node - in the majority of cases your node will successfully sync to the latest block. To restart your node, select Shutdown node from Utilities. Please allow 10-15 minutes for your
                       node to sync after a restart.
                     </li>
                     <li className="mb-1">

@@ -5,7 +5,6 @@ import { BlockResponse, MaxContactsResponse, MaximaResponse, StatusResponse } fr
 import isBefore from 'date-fns/isBefore';
 import subMinutes from 'date-fns/subMinutes';
 import useBadgeNotification from './hooks/useBadgeNotification';
-import Block from './components/UI/Block';
 
 export const appContext = createContext<{
   loaded: RefObject<boolean>;
