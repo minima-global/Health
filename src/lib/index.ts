@@ -26,7 +26,7 @@ export function maxima(): Promise<MaximaResponse> {
 
 export function maxContacts(): Promise<MaxContactsResponse> {
   return new Promise((resolve, reject) => {
-    (window as any).MDS.cmd('maxcontacts', function (response: any) {
+    (window as any).MDS.cmd('maxcontacts action:list', function (response: any) {
       if (response.status) {
         return resolve(response.response);
       }
