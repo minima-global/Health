@@ -17,7 +17,7 @@ function FullStatus({ display, dismiss }: FullStatusProps) {
       <div className="h-full flex flex-col p-5">
         {statusData && (
           <>
-            <Back textContent="Health" onClick={dismiss} />
+            <Back textContent="Back" onClick={dismiss} />
             <h1 className="text-2xl mb-6">Full node status</h1>
             <div className="flex-grow flex flex-col gap-2">
               <Panel title="Minima Status" value={JSON.stringify(statusData, null, 2)} copy>

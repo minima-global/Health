@@ -19,16 +19,22 @@ function Home() {
   const displayChainStatus = () => setShowChainStatus(true);
   const hideChainStatus = () => setShowChainStatus(false);
 
+  const showBack = showChainStatus || showFullStatus;
+
+  const goBackToHome = (e: any) => {
+    e.stopPropagation();
+    hideChainStatus();
+    hideFullStatus();
+  }
+
   return (
     <div className="relative app text-white">
       <div>
         <FullStatus display={showFullStatus} dismiss={hideFullStatus} />
         <ChainStatus display={showChainStatus} dismiss={hideChainStatus} />
 
-        <TitleBar />
+        <TitleBar back={goBackToHome} showBack={showBack} />
         <div className="relative p-4 flex flex-col gap-6 max-w-xl mx-auto">
-          <h1 className="text-2xl">Network health</h1>
-
           <NodeStatus>
             <div className="cursor-pointer mt-4" onClick={displayChainStatus}>
               Need help?

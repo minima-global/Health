@@ -5,7 +5,7 @@ type BackProps = {
 
 export function Back({ textContent, onClick }: BackProps) {
   return (
-    <div onClick={onClick} className="cursor-pointer mb-8 flex items-center">
+    <div onClick={onClick} className="hidden lg:flex cursor-pointer mb-8 flex items-center">
       <svg
         className="mt-0.5 mr-4"
         width="8"
