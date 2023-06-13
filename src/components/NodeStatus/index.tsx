@@ -8,6 +8,10 @@ import fromUnixTime from 'date-fns/fromUnixTime';
 const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
   let { block, maxContactData } = useContext(appContext);
 
+  if (!block || !maxContactData) {
+    return <div />;
+  }
+
   // more than 5 minutes ago
   // block = {
   //   ...block,
