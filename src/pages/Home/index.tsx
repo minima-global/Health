@@ -125,7 +125,7 @@ function Home() {
                   <>
                     <Block
                       title="Same chain"
-                      value={maxContactStats.ok}
+                      value={maxContactStats.sameChain}
                       info={{
                         title: translation.en.SAME_CHAIN_INFO_TITLE,
                         textContent: translation.en.SAME_CHAIN_INFO_TEXT_CONTENT,
@@ -133,7 +133,7 @@ function Home() {
                     />
                     <Block
                       title="Network OK"
-                      value={maxContactStats.sameChain}
+                      value={maxContactStats.ok}
                       info={{
                         title: translation.en.NETWORK_OK_INFO_TITLE,
                         textContent: translation.en.NETWORK_OK_INFO_TEXT_CONTENT,

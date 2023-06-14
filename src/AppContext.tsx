@@ -74,31 +74,33 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (maxContactData) {
-      let networkOk = 0;
-      let sameChain = 0;
+      let networkOkCount = 0;
+      let sameChainCount = 0;
 
       maxContactData.contacts.forEach((contact) => {
         const lastSeen = contact.lastseen;
+        const sameChain = contact.samechain;
 
         const displayGreenNetwork = lastSeen ? isBefore(subMinutes(new Date(), 30), new Date(lastSeen)) : null;
-        const displayYellowNetwork = lastSeen ? isAfter(subMinutes(new Date(), 30), new Date(lastSeen)) && isBefore(subMinutes(new Date(), 59), new Date(lastSeen)) : null;
         const displayRedNetwork = lastSeen ? isAfter(subMinutes(new Date(), 60), new Date(lastSeen)) : null;
 
-        const displayGreenChain = sameChain && !!((displayGreenNetwork || displayYellowNetwork) && sameChain);
+        const displayGreenChain = sameChain && (displayGreenNetwork && sameChain);
         const displayYellowChain = sameChain && !!(displayRedNetwork && sameChain);
 
-        if ((displayGreenNetwork || displayYellowNetwork)) {
-          networkOk += 1;
+        if (displayGreenNetwork) {
+          networkOkCount += 1;
         }
 
-        if ((displayGreenChain || displayYellowChain)) {
-          sameChain += 1;
+        if (displayGreenChain) {
+          sameChainCount += 1;
+        } else if (displayYellowChain) {
+          sameChainCount += 1;
         }
       });
 
       setMaxContactState({
-        ok: networkOk,
-        sameChain: sameChain,
+        ok: networkOkCount,
+        sameChain: sameChainCount,
       });
     }
   }, [maxContactData]);
