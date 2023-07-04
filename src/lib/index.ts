@@ -2,7 +2,7 @@ import { MaxContactsResponse, MaximaResponse, MDSResponse, StatusResponse } from
 
 export function status(): Promise<StatusResponse> {
   return new Promise((resolve, reject) => {
-    (window as any).MDS.cmd('status', function (response: any) {
+    (window as any).MDS.cmd('status complete:true', function (response: any) {
       if (response.status) {
         return resolve(response.response);
       }

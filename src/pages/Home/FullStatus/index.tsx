@@ -21,7 +21,7 @@ function FullStatus({ display, dismiss }: FullStatusProps) {
             <h1 className="text-2xl mb-6">Full node status</h1>
             <div className="flex-grow flex flex-col gap-2">
               <Panel title="Minima Status" value={JSON.stringify(statusData, null, 2)} copy>
-                <textarea className="pr-5 text-sm flex-grow bg-transparent resize-none w-full custom-scrollbar" rows={20} value={JSON.stringify(statusData, null, 2)} readOnly />
+                <textarea className="tracking-wider pr-5 text-sm flex-grow bg-transparent resize-none w-full custom-scrollbar" rows={20} value={JSON.stringify(statusData, null, 4)} readOnly />
               </Panel>
             </div>
           </>
