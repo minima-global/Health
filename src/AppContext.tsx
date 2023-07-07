@@ -14,6 +14,7 @@ export const appContext = createContext<{
   maxContactData: MaxContactsResponse | null;
   maxContactStats: { ok: number; sameChain: number };
   badgeNotification: string | null;
+  heavierChain: boolean,
   setBadgeNotification: Dispatch<SetStateAction<string | null>>;
 }>({
   loaded: {
@@ -24,6 +25,7 @@ export const appContext = createContext<{
   maxContactData: null,
   maxContactStats: { ok: 0, sameChain: 0 },
   badgeNotification: '',
+  heavierChain: false,
   setBadgeNotification: () => null,
 });
 
@@ -35,6 +37,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [maxContactData, setMaxContactData] = useState<MaxContactsResponse | null>(null);
   const [maxContactStats, setMaxContactState] = useState({ ok: 0, sameChain: 0 });
   const badgeNotification = useBadgeNotification();
+  const [heavierChain, setHeavierChain] = useState(true);
 
   // init mds
   useEffect(() => {
@@ -67,6 +70,10 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
             timemilli: evt.data.header.timemilli,
             date: evt.data.header.date,
           });
+        }
+
+        if (evt.event === 'MDS_HEAVIER_CHAIN') {
+          setHeavierChain(true);
         }
       });
     }
@@ -109,6 +116,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     loaded,
     block,
     statusData,
+    heavierChain,
     maxContactData,
     maxContactStats,
     ...badgeNotification,

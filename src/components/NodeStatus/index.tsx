@@ -6,92 +6,7 @@ import { appContext } from '../../AppContext';
 import fromUnixTime from 'date-fns/fromUnixTime';
 
 const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
-  let { block, maxContactData } = useContext(appContext);
-
-  if (!block || !maxContactData) {
-    return <div />;
-  }
-
-  // more than 5 minutes ago
-  // block = {
-  //   ...block,
-  //   timemilli: 1686551141000,
-  // } as any;
-
-  // contact is 5 minutes ago
-  // but not on same chain
-  // const now = new Date();
-  // const testMinutesAgo = subMinutes(now, 5);
-  // maxContactData = {
-  //   ...maxContactData,
-  //   contacts: [
-  //     {
-  //       lastseen: testMinutesAgo,
-  //       samechain: false,
-  //     },
-  //   ],
-  // } as any;
-
-  // // contact is 35 minutes ago
-  // const now = new Date();
-  // const testMinutesAgo = subMinutes(now, 35);
-  // maxContactData = {
-  //   ...maxContactData,
-  //   contacts: [
-  //     {
-  //       lastseen: testMinutesAgo,
-  //       samechain: false,
-  //     },
-  //   ],
-  // } as any;
-
-  // over 60 minutes
-  // const now = new Date();
-  // const testMinutesAgo = subMinutes(now, 58);
-  // maxContactData = {
-  //   ...maxContactData,
-  //   contacts: [
-  //     {
-  //       lastseen: testMinutesAgo,
-  //       samechain: false,
-  //     },
-  //   ],
-  // } as any;
-
-  // // contact is 5 minutes ago but on same chain
-  // const now = new Date();
-  // const testMinutesAgo = subMinutes(now, 5);
-  // maxContactData = {
-  //   ...maxContactData,
-  //   contacts: [
-  //     {
-  //       lastseen: testMinutesAgo,
-  //       samechain: true,
-  //     },
-  //   ],
-  // } as any;
-
-  // contact is 5 minutes ago but on same chain
-  // 2nd contact is the one with error
-  // const now = new Date();
-  // const testMinutesAgo = subMinutes(now, 58);
-  // block = {
-  //   ...block,
-  //   timemilli: 1686551141000,
-  // } as any;
-  // maxContactData = {
-  //   ...maxContactData,
-  //   contacts: [
-  //     {
-  //       lastseen: testMinutesAgo,
-  //       samechain: true,
-  //     },
-  //     {
-  //       lastseen: testMinutesAgo,
-  //       samechain: true,
-  //     },
-  //   ],
-  // } as any;
+  let { block, heavierChain, maxContactData } = useContext(appContext);
 
   const nodeStatus = useMemo(() => {
     if (block) {
@@ -118,12 +33,16 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
     return true;
   }, [maxContactData]);
 
+  if (!block || !maxContactData) {
+    return <div />;
+  }
+
   return (
     <>
       <div className="rounded-md core-black-contrast overflow-hidden">
         <h5 className="p-4 text-xl">Chain</h5>
         <div className="flex flex-col gap-0.5">
-          {(!nodeStatus || !contactStatus) && (
+          {(!nodeStatus || !contactStatus || heavierChain) && (
             <>
               <Block title="Status">
                 <div className="flex items-center justify-end text-status-red">
@@ -144,28 +63,33 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
                 </div>
               </Block>
               <div className="bg-grey text-sm p-4">
-                {!nodeStatus && contactStatus && (
+                {!nodeStatus && contactStatus && !heavierChain && (
                   <div className="text-core-grey-80">
                     You last received a block over 5 minutes ago. Your node may not be in sync with the latest block.
                   </div>
                 )}
-                {!contactStatus && nodeStatus && (
+                {!contactStatus && nodeStatus && !heavierChain && (
                   <div className="text-core-grey-80">
                     One or more of your Maxima contacts are on a different chain. Please check you are on the right
                     chain.
                   </div>
                 )}
-                {!contactStatus && !nodeStatus && (
+                {!contactStatus && !nodeStatus && !heavierChain && (
                   <div className="text-core-grey-80">
                     You last received a block over 5 minutes ago and one or more of your Maxima contacts are on a
                     different chain. Your node may not be in sync, please check you are on the right chain.
+                  </div>
+                )}
+                {heavierChain && (
+                  <div>
+                    Your node requires a chain resync, please check your logs for details.
                   </div>
                 )}
                 {children}
               </div>
             </>
           )}
-          {nodeStatus && contactStatus && (
+          {nodeStatus && contactStatus && !heavierChain && (
             <>
               <Block title="Status">
                 <div className="flex items-center justify-end text-status-green">
