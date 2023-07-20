@@ -37,7 +37,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [maxContactData, setMaxContactData] = useState<MaxContactsResponse | null>(null);
   const [maxContactStats, setMaxContactState] = useState({ ok: 0, sameChain: 0 });
   const badgeNotification = useBadgeNotification();
-  const [heavierChain, setHeavierChain] = useState(true);
+  const [heavierChain, setHeavierChain] = useState(false);
 
   // init mds
   useEffect(() => {
@@ -65,10 +65,11 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
         }
 
         if (evt.event === 'NEWBLOCK') {
+          console.log(evt.data);
           setBlock({
-            block: evt.data.header.block,
-            timemilli: evt.data.header.timemilli,
-            date: evt.data.header.date,
+            block: evt.data.txpow.header.block,
+            timemilli: evt.data.txpow.header.timemilli,
+            date: evt.data.txpow.header.date,
           });
         }
 

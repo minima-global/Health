@@ -37,6 +37,45 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
     return <div />;
   }
 
+  const renderMessage = () => {
+    if (!nodeStatus && contactStatus && heavierChain) {
+      return (
+        <div className="text-core-grey-80">
+          Your node requires a chain resync, please check your logs for details.
+        </div>
+      );
+
+    } else if (!nodeStatus && contactStatus && !heavierChain) {
+      return (
+        <div className="text-core-grey-80">
+          You last received a block over 5 minutes ago. Your node may not be in sync with the latest block.
+        </div>
+      );
+    } else if (!contactStatus && nodeStatus && !heavierChain) {
+      return (
+        <div className="text-core-grey-80">
+          One or more of your Maxima contacts are on a different chain. Please check you are on the right
+          chain.
+        </div>
+      );
+    } else if (!contactStatus && !nodeStatus && !heavierChain) {
+      return (
+        <div className="text-core-grey-80">
+          You last received a block over 5 minutes ago and one or more of your Maxima contacts are on a
+          different chain. Your node may not be in sync, please check you are on the right chain.
+        </div>
+      )
+    } else if (heavierChain) {
+      return (
+        <div>
+          Your node requires a chain resync, please check your logs for details.
+        </div>
+      );
+    }
+
+    return null;
+  }
+
   return (
     <>
       <div className="rounded-md core-black-contrast overflow-hidden">
@@ -63,28 +102,7 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
                 </div>
               </Block>
               <div className="bg-grey text-sm p-4">
-                {!nodeStatus && contactStatus && !heavierChain && (
-                  <div className="text-core-grey-80">
-                    You last received a block over 5 minutes ago. Your node may not be in sync with the latest block.
-                  </div>
-                )}
-                {!contactStatus && nodeStatus && !heavierChain && (
-                  <div className="text-core-grey-80">
-                    One or more of your Maxima contacts are on a different chain. Please check you are on the right
-                    chain.
-                  </div>
-                )}
-                {!contactStatus && !nodeStatus && !heavierChain && (
-                  <div className="text-core-grey-80">
-                    You last received a block over 5 minutes ago and one or more of your Maxima contacts are on a
-                    different chain. Your node may not be in sync, please check you are on the right chain.
-                  </div>
-                )}
-                {heavierChain && (
-                  <div>
-                    Your node requires a chain resync, please check your logs for details.
-                  </div>
-                )}
+                {renderMessage()}
                 {children}
               </div>
             </>
