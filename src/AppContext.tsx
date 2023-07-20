@@ -65,7 +65,6 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
         }
 
         if (evt.event === 'NEWBLOCK') {
-          console.log(evt.data);
           setBlock({
             block: evt.data.txpow.header.block,
             timemilli: evt.data.txpow.header.timemilli,
