@@ -10,6 +10,7 @@ import { isAfter } from 'date-fns';
 export const appContext = createContext<{
   loaded: RefObject<boolean>;
   block: BlockResponse | null;
+  maximaData: MaximaResponse | null;
   statusData: StatusResponse | null;
   maxContactData: MaxContactsResponse | null;
   maxContactStats: { ok: number; sameChain: number };
@@ -20,6 +21,7 @@ export const appContext = createContext<{
   loaded: {
     current: false,
   },
+  maximaData: null,
   block: null,
   statusData: null,
   maxContactData: null,
