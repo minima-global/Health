@@ -10,7 +10,7 @@ import translation from '../../../translation.json';
 import TitleBlock from '../../components/TitleBlock';
 
 function Home() {
-  const { statusData, maxContactData, maxContactStats } = useContext(appContext);
+  const { statusData, maximaData, maxContactData, maxContactStats } = useContext(appContext);
   const [showFullStatus, setShowFullState] = useState(false);
   const [showChainStatus, setShowChainStatus] = useState(false);
 
@@ -141,6 +141,16 @@ function Home() {
                     />
                   </>
                 )}
+                {maximaData && (
+                  <Block
+                    title="Poll"
+                    value={maximaData.poll}
+                    info={{
+                      title: translation.en.POLL_INFO_TITLE,
+                      textContent: translation.en.POLL_INFO_TEXT_CONTENT,
+                    }}
+                  />
+                )}
               </div>
             </div>
           )}
@@ -207,7 +217,7 @@ function Home() {
             </div>
           )}
 
-          <div className="mt-4">
+          <div className="mt-4 mb-6">
             <MenuItem title="Full node status" onClick={displayFullStatus} />
           </div>
         </div>

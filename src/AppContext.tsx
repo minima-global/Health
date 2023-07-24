@@ -32,7 +32,7 @@ export const appContext = createContext<{
 const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const loaded = useRef(false);
   const [statusData, setStatusData] = useState<StatusResponse | null>(null);
-  const [, setMaximaData] = useState<MaximaResponse | null>(null);
+  const [maximaData, setMaximaData] = useState<MaximaResponse | null>(null);
   const [block, setBlock] = useState<BlockResponse | null>(null);
   const [maxContactData, setMaxContactData] = useState<MaxContactsResponse | null>(null);
   const [maxContactStats, setMaxContactState] = useState({ ok: 0, sameChain: 0 });
@@ -115,6 +115,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const value = {
     loaded,
     block,
+    maximaData,
     statusData,
     heavierChain,
     maxContactData,

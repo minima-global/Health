@@ -20,6 +20,8 @@
     "CONTACTS_INFO_TEXT_CONTENT": "Total number of Maxima contacts",
     "SAME_CHAIN_INFO_TITLE": "Same Chain",
     "SAME_CHAIN_INFO_TEXT_CONTENT": "Number of contacts on the same chain as you",
+    "POLL_INFO_TITLE": "Poll",
+    "POLL_INFO_TEXT_CONTENT": "The number of maxima clients that you are polling",
     "NETWORK_OK_INFO_TITLE": "Network OK",
     "NETWORK_OK_INFO_TEXT_CONTENT": "Number of contacts you are actively connected to",
     "MINIMA_DAPP_SYSTEM_INFO_TITLE": "MiniDapp System",
