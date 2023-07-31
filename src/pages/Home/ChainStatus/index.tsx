@@ -54,13 +54,6 @@ function ChainStatus({ display, dismiss }: FullStatusProps) {
                       Chain re-sync - Ensure you have a copy of your seed phrase, then perform a chain re-sync using the Security MiniDapp. Once in sync, take a new backup.
                     </li>
                   </ol>
-                  <div>
-                    <h5 className="mb-4 font-bold">Chain re-sync</h5>
-                    <div className="mb-1">
-                      If you have not previously taken a backup, take a backup now and
-                      then do a Chain re-sync from an Archive node.
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
