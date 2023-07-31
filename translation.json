@@ -11,7 +11,7 @@
     "RAM_INFO_TITLE": "RAM",
     "RAM_INFO_TEXT_CONTENT": "Amount of memory in use by your node",
     "DISK_SPACE_INFO_TITLE": "Disk Space",
-    "DISK_SPACE_INFO_TEXT_CONTENT": "Amount of disk space in use by your node",
+    "DISK_SPACE_INFO_TEXT_CONTENT": "Amount of disk space in use by your node. Shutdown from Settings and restart to reduce the space in use",
     "UPTIME_INFO_TITLE": "Uptime",
     "UPTIME_INFO_TEXT_CONTENT": "How long your node has been running since it was last started",
     "MAXIMA_INFO_TITLE": "Maxima",
