@@ -31,7 +31,7 @@ function Home() {
     <div className="relative app text-white">
       <div>
         <FullStatus display={showFullStatus} dismiss={hideFullStatus} />
-        <ChainStatus display={showChainStatus} dismiss={hideChainStatus} />
+        <ChainStatus display={true} dismiss={hideChainStatus} />
 
         <TitleBar back={goBackToHome} showBack={showBack} />
         <div className="relative p-4 flex flex-col gap-6 max-w-xl mx-auto">

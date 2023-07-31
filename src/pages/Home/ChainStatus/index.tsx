@@ -38,24 +38,29 @@ function ChainStatus({ display, dismiss }: FullStatusProps) {
                     block.
                   </p>
                   <p className="mb-4">If your node remains out of sync, please attempt the following steps:</p>
-                  <ol className="list-decimal mx-4">
+                  <ol className="list-decimal mx-4 mb-4">
                     <li className="mb-1">Check your internet connection</li>
                     <li className="mb-1">
                       Check that the Minima app battery setting is set to "not optimised" (if using Android)
                     </li>{' '}
                     <li className="mb-1">
-                      Restart your node - in the majority of cases your node will successfully sync to the latest block. To restart your node, select Shutdown node from Utilities. Please allow 10-15 minutes for your
+                      Restart your node - in the majority of cases your node will successfully sync to the latest block. To restart your node, select Shutdown node from Settings. Please allow 10-15 minutes for your
                       node to sync after a restart.
                     </li>
                     <li className="mb-1">
-                      Restore a recent backup - your node will sync from the last block in the backup to the latest
-                      block Backup & Chain re-sync
+                      Restore a backup - Ensure you have a copy of your seed phrase, then restore a backup using the Security MiniDapp to sync to the top block. Once in sync, take a new backup.
                     </li>
                     <li className="mb-1">
-                      If you have not previously taken a backup, take a backup now and
-                      then do a Chain re-sync from an Archive node.
+                      Chain re-sync - Ensure you have a copy of your seed phrase, then perform a chain re-sync using the Security MiniDapp. Once in sync, take a new backup.
                     </li>
                   </ol>
+                  <div>
+                    <h5 className="mb-4 font-bold">Chain re-sync</h5>
+                    <div className="mb-1">
+                      If you have not previously taken a backup, take a backup now and
+                      then do a Chain re-sync from an Archive node.
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

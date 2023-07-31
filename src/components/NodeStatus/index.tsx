@@ -41,7 +41,7 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
     if (!nodeStatus && contactStatus && heavierChain) {
       return (
         <div className="text-core-grey-80">
-          Your node requires a chain resync, please check your logs for details.
+          Your node requires a chain re-sync, please check your logs for details.
         </div>
       );
 
@@ -68,7 +68,7 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
     } else if (heavierChain) {
       return (
         <div>
-          Your node requires a chain resync, please check your logs for details.
+          Your node requires a chain re-sync, please check your logs for details.
         </div>
       );
     }
