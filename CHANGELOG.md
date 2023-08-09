@@ -1,5 +1,9 @@
 # Changelog
 
+##### [1.1.4] - 9th of August
+
+- Minor text changes
+
 ##### [1.1.2] - 1st of August
 
 - Minor text changes

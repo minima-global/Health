@@ -54,8 +54,7 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
     } else if (!contactStatus && nodeStatus && !heavierChain) {
       return (
         <div className="text-core-grey-80">
-          One or more of your Maxima contacts are on a different chain. Please check you are on the right
-          chain.
+          One or more of your Maxima contacts are on a different chain. If multiple contacts show a red chain status in MaxContacts, your node may require a chain re-sync.
         </div>
       );
     } else if (!contactStatus && !nodeStatus && !heavierChain) {
