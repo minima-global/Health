@@ -1,5 +1,9 @@
 # Changelog
 
+##### [1.2.0] - 14 January 25
+
+- Added poll count as a stat
+
 ##### [1.1.5] - 12 September 23
 
 - Minor text changes

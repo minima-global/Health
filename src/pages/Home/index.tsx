@@ -167,50 +167,10 @@ function Home() {
               <div className="flex flex-col gap-0.5">
                 <Block
                   title="Connections"
-                  value={statusData.network.connected}
+                  value={statusData.network?.connected}
                   info={{
                     title: translation.en.CONNECTIONS_TITLE,
                     textContent: translation.en.CONNECTIONS_TEXT_CONTENT,
-                  }}
-                />
-                <Block
-                  title="From"
-                  value={statusData.network.traffic.from}
-                  info={{
-                    title: translation.en.FROM_TITLE,
-                    textContent: translation.en.FROM_TEXT_CONTENT,
-                  }}
-                />
-                <Block
-                  title="Total read"
-                  value={statusData.network.traffic.totalread}
-                  info={{
-                    title: translation.en.TOTAL_READ_TITLE,
-                    textContent: translation.en.TOTAL_READ_TEXT_CONTENT,
-                  }}
-                />
-                <Block
-                  title="Total write"
-                  value={statusData.network.traffic.totalwrite}
-                  info={{
-                    title: translation.en.TOTAL_WRITE_TITLE,
-                    textContent: translation.en.TOTAL_WRITE_TEXT_CONTENT,
-                  }}
-                />
-                <Block
-                  title="Read"
-                  value={statusData.network.traffic.read}
-                  info={{
-                    title: translation.en.READ_TITLE,
-                    textContent: translation.en.READ_TEXT_CONTENT,
-                  }}
-                />
-                <Block
-                  title="Write"
-                  value={statusData.network.traffic.write}
-                  info={{
-                    title: translation.en.WRITE_TITLE,
-                    textContent: translation.en.WRITE_TEXT_CONTENT,
                   }}
                 />
               </div>
