@@ -85,3 +85,7 @@ export function saveFile(fileName: string, arg: string | object) {
 export function getBlock() {
   return promisfy((window as any).MDS.cmd, 'block');
 }
+
+export function network() {
+  return promisfy((window as any).MDS.cmd, 'network');
+}

@@ -1,5 +1,13 @@
 # Changelog
 
+##### [1.2.1] - 16th of January 25
+
+- Made network data backwards compatible with Minima nodes older than 1.44.3
+
+##### [1.2.0] - 14th of January 25
+
+- Fixed network data on Minima nodes newer than 1.44.3
+
 ##### [1.1.5] - 12 September 23
 
 - Minor text changes

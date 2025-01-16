@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createContext, Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from 'react';
-import { status, maxima, maxContacts, getBlock } from './lib';
-import { BlockResponse, MaxContactsResponse, MaximaResponse, StatusResponse } from './types';
+import { status, maxima, maxContacts, getBlock, network } from './lib';
+import { BlockResponse, MaxContactsResponse, MaximaResponse, NetworkResponse, StatusResponse } from './types';
 import isBefore from 'date-fns/isBefore';
 import subMinutes from 'date-fns/subMinutes';
 import useBadgeNotification from './hooks/useBadgeNotification';
@@ -12,6 +12,7 @@ export const appContext = createContext<{
   block: BlockResponse | null;
   maximaData: MaximaResponse | null;
   statusData: StatusResponse | null;
+  networkData: NetworkResponse | null;
   maxContactData: MaxContactsResponse | null;
   maxContactStats: { ok: number; sameChain: number };
   badgeNotification: string | null;
@@ -24,6 +25,7 @@ export const appContext = createContext<{
   maximaData: null,
   block: null,
   statusData: null,
+  networkData: null,
   maxContactData: null,
   maxContactStats: { ok: 0, sameChain: 0 },
   badgeNotification: '',
@@ -35,6 +37,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const loaded = useRef(false);
   const [statusData, setStatusData] = useState<StatusResponse | null>(null);
   const [maximaData, setMaximaData] = useState<MaximaResponse | null>(null);
+  const [networkData, setNetworkData] = useState<NetworkResponse | null>(null);
   const [block, setBlock] = useState<BlockResponse | null>(null);
   const [maxContactData, setMaxContactData] = useState<MaxContactsResponse | null>(null);
   const [maxContactStats, setMaxContactState] = useState({ ok: 0, sameChain: 0 });
@@ -63,6 +66,16 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
         if (evt.event === 'inited') {
           getBlock().then((blockResponse) => {
             setBlock(blockResponse);
+          });
+
+          network().then((networkResponse) => {
+            setNetworkData(networkResponse);
+          });
+        }
+
+        if (evt.event === 'MDS_TIMER_60SECONDS') {
+          network().then((networkResponse) => {
+            setNetworkData(networkResponse);
           });
         }
 
@@ -122,6 +135,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     heavierChain,
     maxContactData,
     maxContactStats,
+    networkData,
     ...badgeNotification,
   };
 

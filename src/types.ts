@@ -128,3 +128,56 @@ export type BlockResponse = {
   date: string;
   timemilli: string;
 };
+
+export type NetworkResponse = {
+  connections: {
+    welcome: string;
+    uid: string;
+    incoming: boolean;
+    host: string;
+    port: number;
+    minimaport: number;
+    isconnected: boolean;
+    valid: boolean;
+    connected: string;
+  }[];
+  details: {
+    host: string;
+    hostset: boolean;
+    port: number;
+    connecting: number;
+    connected: number;
+    rpc: {
+      enabled: boolean;
+      port: number;
+    };
+    p2p: {
+      address: string;
+      isAcceptingInLinks: boolean;
+      numInLinks: number;
+      numOutLinks: number;
+      numNotAcceptingConnP2PLinks: number;
+      numNoneP2PLinks: number;
+      numKnownPeers: number;
+      numUnvalidatedPeers: number;
+      numAllLinks: number;
+      nio_inbound: number;
+      nio_outbound: number;
+    };
+    traffic: {
+      from: string;
+      totalread: string;
+      totalwrite: string;
+      breakdown: {
+        reads: {
+          [key: string]: string;
+        };
+        writes: {
+          [key: string]: string;
+        };
+      };
+      read: string;
+      write: string;
+    };
+  };
+};

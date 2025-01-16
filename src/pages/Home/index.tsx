@@ -10,9 +10,10 @@ import translation from '../../../translation.json';
 import TitleBlock from '../../components/TitleBlock';
 
 function Home() {
-  const { statusData, maximaData, maxContactData, maxContactStats } = useContext(appContext);
+  const { statusData, networkData, maximaData, maxContactData, maxContactStats } = useContext(appContext);
   const [showFullStatus, setShowFullState] = useState(false);
   const [showChainStatus, setShowChainStatus] = useState(false);
+  const isOlderVersion =  !!(statusData && statusData.network && statusData.network.traffic)
 
   const displayFullStatus = () => setShowFullState(true);
   const hideFullStatus = () => setShowFullState(false);
@@ -173,46 +174,94 @@ function Home() {
                     textContent: translation.en.CONNECTIONS_TEXT_CONTENT,
                   }}
                 />
-                <Block
-                  title="From"
-                  value={statusData.network.traffic.from}
-                  info={{
-                    title: translation.en.FROM_TITLE,
-                    textContent: translation.en.FROM_TEXT_CONTENT,
-                  }}
-                />
-                <Block
-                  title="Total read"
-                  value={statusData.network.traffic.totalread}
-                  info={{
-                    title: translation.en.TOTAL_READ_TITLE,
-                    textContent: translation.en.TOTAL_READ_TEXT_CONTENT,
-                  }}
-                />
-                <Block
-                  title="Total write"
-                  value={statusData.network.traffic.totalwrite}
-                  info={{
-                    title: translation.en.TOTAL_WRITE_TITLE,
-                    textContent: translation.en.TOTAL_WRITE_TEXT_CONTENT,
-                  }}
-                />
-                <Block
-                  title="Read"
-                  value={statusData.network.traffic.read}
-                  info={{
-                    title: translation.en.READ_TITLE,
-                    textContent: translation.en.READ_TEXT_CONTENT,
-                  }}
-                />
-                <Block
-                  title="Write"
-                  value={statusData.network.traffic.write}
-                  info={{
-                    title: translation.en.WRITE_TITLE,
-                    textContent: translation.en.WRITE_TEXT_CONTENT,
-                  }}
-                />
+                {!isOlderVersion && (
+                  <>
+                    <Block
+                      title="From"
+                      value={networkData?.details.traffic.from}
+                      info={{
+                        title: translation.en.FROM_TITLE,
+                        textContent: translation.en.FROM_TEXT_CONTENT,
+                      }}
+                    />
+                    <Block
+                      title="Total read"
+                      value={networkData?.details.traffic.totalread}
+                      info={{
+                        title: translation.en.TOTAL_READ_TITLE,
+                        textContent: translation.en.TOTAL_READ_TEXT_CONTENT,
+                      }}
+                    />
+                    <Block
+                      title="Total write"
+                      value={networkData?.details.traffic.totalwrite}
+                      info={{
+                        title: translation.en.TOTAL_WRITE_TITLE,
+                        textContent: translation.en.TOTAL_WRITE_TEXT_CONTENT,
+                      }}
+                    />
+                    <Block
+                      title="Read"
+                      value={networkData?.details.traffic.read}
+                      info={{
+                        title: translation.en.READ_TITLE,
+                        textContent: translation.en.READ_TEXT_CONTENT,
+                      }}
+                    />
+                    <Block
+                      title="Write"
+                      value={networkData?.details.traffic.write}
+                      info={{
+                        title: translation.en.WRITE_TITLE,
+                        textContent: translation.en.WRITE_TEXT_CONTENT,
+                      }}
+                    />
+                  </>
+                )}
+                {isOlderVersion && (
+                  <>
+                    <Block
+                      title="From"
+                      value={statusData.network.traffic.from}
+                      info={{
+                        title: translation.en.FROM_TITLE,
+                        textContent: translation.en.FROM_TEXT_CONTENT,
+                      }}
+                    />
+                    <Block
+                      title="Total read"
+                      value={statusData.network.traffic.totalread}
+                      info={{
+                        title: translation.en.TOTAL_READ_TITLE,
+                        textContent: translation.en.TOTAL_READ_TEXT_CONTENT,
+                      }}
+                    />
+                    <Block
+                      title="Total write"
+                      value={statusData.network.traffic.totalwrite}
+                      info={{
+                        title: translation.en.TOTAL_WRITE_TITLE,
+                        textContent: translation.en.TOTAL_WRITE_TEXT_CONTENT,
+                      }}
+                    />
+                    <Block
+                      title="Read"
+                      value={statusData.network.traffic.read}
+                      info={{
+                        title: translation.en.READ_TITLE,
+                        textContent: translation.en.READ_TEXT_CONTENT,
+                      }}
+                    />
+                    <Block
+                      title="Write"
+                      value={statusData.network.traffic.write}
+                      info={{
+                        title: translation.en.WRITE_TITLE,
+                        textContent: translation.en.WRITE_TEXT_CONTENT,
+                      }}
+                    />
+                  </>
+                )}
               </div>
             </div>
           )}
