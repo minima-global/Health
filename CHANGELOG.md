@@ -1,5 +1,13 @@
 # Changelog
 
+##### [1.2.3] - 18th of February 25
+
+- The MiniDapp has been renamed to 'Status'
+
+##### [1.2.2] - 22nd of January 25
+
+- Changed category to System
+
 ##### [1.2.1] - 16th of January 25
 
 - Made network data backwards compatible with Minima nodes older than 1.44.3

@@ -19,14 +19,14 @@ const TitleBar = ({ showBack, back }) => {
               </div>
               <div className="hidden lg:flex items-center cursor-pointer">
                 <img src="./icon.png" className="w-8 h-8 rounded" alt="Logo" />
-                <div className="ml-3 text-lg font-bold">Health</div>
+                <div className="ml-3 text-lg font-bold">Status</div>
               </div>
             </>
           )}
           {!showBack && (
             <>
               <img src="./icon.png" className="w-8 h-8 rounded" alt="Logo" />
-              <div className="ml-3 text-lg font-bold">Health</div>
+              <div className="ml-3 text-lg font-bold">Status</div>
             </>
           )}
         </div>
