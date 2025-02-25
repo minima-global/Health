@@ -6,7 +6,7 @@ const TitleBar = ({ showBack, back }) => {
   // show back is only enabled on mobile
 
   return (
-    <div className="sticky top-0 z-40 title-bar mr-2" onClick={openTitleBar}>
+    <div className="sticky top-0 z-40 title-bar" onClick={openTitleBar}>
       <div className="grid grid-cols-12">
         <div className="col-span-6 flex items-center p-4 lg:px-8">
           {showBack && (

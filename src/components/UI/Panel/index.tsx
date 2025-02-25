@@ -38,8 +38,8 @@ const Panel: React.FC<React.PropsWithChildren<PanelProps>> = ({
   }
 
   return (
-    <div className="flex flex-col core-black-contrast rounded relative overflow-hidden h-full">
-      <div className="relative text-white p-4">
+    <div className="flex flex-col gap-1 relative overflow-hidden h-full">
+      <div className="bg-contrast1 rounded relative text-white p-4 py-3.5">
         {title}
         {copy && (
           <div className="absolute top-0 right-0 h-full flex items-center mr-4 text-core-grey">

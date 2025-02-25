@@ -24,7 +24,7 @@ const TitleBlock: React.FC<React.PropsWithChildren<TitleBlockProps>> = ({ title,
           <p className="text-core-grey-40 text-base mb-3">{info?.textContent}</p>
         </div>
       </Modal>
-      <h5 className="p-4 text-xl flex items-center">
+      <h5 className="px-4 py-3 rounded-md core-black-contrast text-xl flex items-center">
         {title}
         {info && (
           <svg

@@ -43,7 +43,7 @@ function Home() {
           </NodeStatus>
 
           {statusData && (
-            <div className="rounded-md core-black-contrast overflow-hidden">
+            <div className="overflow-hidden flex flex-col gap-1">
               <TitleBlock
                 title="Minima"
                 info={{
@@ -105,7 +105,7 @@ function Home() {
           )}
 
           {maxContactData && (
-            <div className="rounded-md core-black-contrast overflow-hidden">
+            <div className="overflow-hidden flex flex-col gap-1">
               <TitleBlock
                 title="Maxima"
                 info={{
@@ -157,7 +157,7 @@ function Home() {
           )}
 
           {statusData && (
-            <div className="rounded-md core-black-contrast overflow-hidden">
+            <div className="overflow-hidden flex flex-col gap-1">
               <TitleBlock
                 title="Network"
                 info={{
