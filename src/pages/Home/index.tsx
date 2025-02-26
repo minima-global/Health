@@ -2,12 +2,13 @@ import { useContext, useState } from 'react';
 import FullStatus from './FullStatus';
 import Block from '../../components/UI/Block';
 import { appContext } from '../../AppContext';
-import TitleBar from '../../components/TitleBar';
 import MenuItem from '../../components/UI/MenuItem';
 import ChainStatus from './ChainStatus';
 import NodeStatus from '../../components/NodeStatus';
 import translation from '../../../translation.json';
 import TitleBlock from '../../components/TitleBlock';
+import TitleBarButton from '../../components/TitleBarButton';
+import TitleBar from '../../components/TitleBar';
 
 function Home() {
   const { statusData, networkData, maximaData, maxContactData, maxContactStats } = useContext(appContext);
@@ -34,9 +35,11 @@ function Home() {
         <FullStatus display={showFullStatus} dismiss={hideFullStatus} />
         <ChainStatus display={showChainStatus} dismiss={hideChainStatus} />
 
+        <TitleBar showBack={showBack} back={goBackToHome} />
+
         <div className="relative p-4 flex flex-col gap-6 max-w-xl mx-auto">
 
-          <div className="pt-11 w-full mx-auto flex justify-center mb-6">
+          <div className="w-full mx-auto flex justify-center mb-6">
             <div className="text-center flex flex-col items-center gap-2">
               <svg className="block mb-2" width="49" height="48" viewBox="0 0 49 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0.5" width="48" height="48" rx="8" fill="#00CA69" />
