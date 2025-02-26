@@ -38,7 +38,7 @@ const Block: React.FC<React.PropsWithChildren<BlockProps>> = ({ children, title,
   }
 
   return (
-    <div className="p-4 text-sm rounded bg-contrast2 relative flex items-center w-full">
+    <div className="p-4 text-sm rounded bg-contrast1.5 relative flex items-center w-full">
       <Modal display={showInfo} frosted closeAtBottom={hideInfo}>
         <div className="text-center">
           <h1 className="text-2xl pb-6">{info?.title}</h1>

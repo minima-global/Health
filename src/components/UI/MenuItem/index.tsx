@@ -5,7 +5,7 @@ type MenuItemsProps = {
 
 const MenuItem: React.FC<MenuItemsProps> = ({ title, onClick }) => {
   return (
-    <div onClick={onClick} className="relative core-black-contrast-2 py-4 px-5 rounded cursor-pointer">
+    <div onClick={onClick} className="relative bg-contrast1.5 py-4 px-5 rounded cursor-pointer">
       {title}
       <div className="absolute right-0 top-0 h-full px-5 flex items-center">
         <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">

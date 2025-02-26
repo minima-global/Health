@@ -20,11 +20,11 @@ const TitleBlock: React.FC<React.PropsWithChildren<TitleBlockProps>> = ({ title,
     <>
       <Modal display={showInfo} frosted closeAtBottom={hideInfo}>
         <div className="text-center">
-          <h1 className="text-2xl pb-6">{info?.title}</h1>
+          <h1 className="text-lg pb-6">{info?.title}</h1>
           <p className="text-core-grey-40 text-base mb-3">{info?.textContent}</p>
         </div>
       </Modal>
-      <h5 className="px-4 py-3 rounded-md core-black-contrast text-xl flex items-center">
+      <h5 className="px-4 py-3 rounded-md core-black-contrast text-lg flex items-center">
         {title}
         {info && (
           <svg

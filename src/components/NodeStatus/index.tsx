@@ -79,7 +79,7 @@ const NodeStatus: FC<PropsWithChildren> = ({ children }) => {
     <>
       <div className="overflow-hidden flex flex-col gap-1">
         <div className="rounded-md bg-contrast1 overflow-hidden">
-          <h5 className="py-3 px-4 text-xl">Chain</h5>
+          <h5 className="py-3 px-4 text-lg">Chain</h5>
         </div>
         <div className="flex flex-col gap-0.5">
           {(!nodeStatus || !contactStatus || heavierChain) && (
