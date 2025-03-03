@@ -7,7 +7,6 @@ import ChainStatus from './ChainStatus';
 import NodeStatus from '../../components/NodeStatus';
 import translation from '../../../translation.json';
 import TitleBlock from '../../components/TitleBlock';
-import TitleBarButton from '../../components/TitleBarButton';
 import TitleBar from '../../components/TitleBar';
 
 function Home() {
@@ -51,7 +50,7 @@ function Home() {
                 </g>
               </svg>
 
-              <h1 className="text-2xl mb-2">Status</h1>
+              <h1 className="text-2xl mb-2">Health</h1>
               <p className="text-sm max-w-xs text-grey80 mb-2">
                 Monitor your node's status, including block height, sync status, and network connectivity.
               </p>

@@ -1,5 +1,17 @@
 # Changelog
 
+##### [1.3.2] - 3rd of March 25
+
+- The MiniDapp has been renamed back to 'Health'
+
+##### [1.3.1] - 28th of February 25
+
+- Minor text changes
+
+##### [1.3.0] - 27th of February 25
+
+- Revised some of the UI
+
 ##### [1.2.3] - 18th of February 25
 
 - The MiniDapp has been renamed to 'Status'
